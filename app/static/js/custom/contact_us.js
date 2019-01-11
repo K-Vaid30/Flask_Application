@@ -1,7 +1,9 @@
 const name_pattern = /^[a-zA-Z ]+$/;
 const email_pattern = /^[a-zA-Z_\.\d]+@[a-zA-Z_]+\.[a-zA-Z]{2,3}$/;
 const phone_pattern = /^\d{10}$/;
-var test_case = 0;
+var name_status = false;
+var email_status = false;
+var phone_status = false;
 
 function name_check(name){
   var div = document.getElementById('name-form');
@@ -10,11 +12,12 @@ function name_check(name){
     div.setAttribute("class", "input border-danger alert-border");
     p.innerHTML = "Use only Alphabets";
     setTimeout("document.forms['user-detail']['name'].focus();",0);
+    name_status = false;
   }
   else{
     div.setAttribute("class", "input");
     p.innerHTML = "";
-    test_case ++;
+    name_status = true;
   }
 }
 function email_check(email){
@@ -24,11 +27,12 @@ function email_check(email){
     div.setAttribute("class", "input border-danger alert-border");
     p.innerHTML = "Enter Email in (xyz@abc.com) format";
     setTimeout("document.forms['user-detail']['email'].focus();",0);
+    email_status = false;
   }
   else{
     div.setAttribute("class", "input");
     p.innerHTML = "";
-    test_case ++;
+    email_status = true;
   }
 }
 function phone_check(phone){
@@ -38,11 +42,12 @@ function phone_check(phone){
     div.setAttribute("class", "input border-danger alert-border");
     p.innerHTML = "Mobile Number should contain 10-digits";
     setTimeout("document.forms['user-detail']['phone'].focus();",0);
+    phone_status = false;
   }
   else{
     div.setAttribute("class", "input");
     p.innerHTML = "";
-    test_case ++;
+    phone_status = true;
   }
 }
 
@@ -74,7 +79,7 @@ function get_details(){
     valid = false;
   }
 
-  if (valid & test_case >= 3){
+  if (valid & name_status & email_status & phone_status){
     request_response(name, email, phone, api_url);
   }
 }
