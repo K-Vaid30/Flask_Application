@@ -4,4 +4,4 @@ lib
 web_application
 __pycache__
 *.pyc
-service-account-key.json
+service-account.json
