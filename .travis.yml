@@ -13,3 +13,4 @@ after_success:
     provider: gae
     keyfile: "service-account.json"
     project: "simple-flask-application"
+    config: "app.yml"
