@@ -1,7 +1,6 @@
 *.pyc
 __pycache__
 service-account.json
-lib
 web_application
 testing_code.bat
 virtual_env_activate.bat
