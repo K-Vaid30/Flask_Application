@@ -1,7 +1,7 @@
-virtual_env_activate.bat
-testing_code.bat
+*.pyc
+__pycache__
+service-account.json
 lib
 web_application
-__pycache__
-*.pyc
-service-account.json
+testing_code.bat
+virtual_env_activate.bat
