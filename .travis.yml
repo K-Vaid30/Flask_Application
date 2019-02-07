@@ -1,11 +1,10 @@
+# make use of vm's
+sudo: 'required'
+
 language: python
 
 python:
 - '2.7'
-
-# make use of vm's
-sudo: 'required'
-
 
 # have the docker service set up (we'll
 # update it later)
@@ -16,22 +15,18 @@ services:
 # installation scripts
 before_install:
   - '.travis/main.sh'
+  - openssl aes-256-cbc -K $encrypted_19ca236cca21_key -iv $encrypted_19ca236cca21_iv
+    -in service-account.json.enc -out service-account.json -d
 
 install:
 - pip install -r requirements.txt
-
-script:
-- python -m unittest discover -v
-
-before_install:
-- openssl aes-256-cbc -K $encrypted_19ca236cca21_key -iv $encrypted_19ca236cca21_iv
-  -in service-account.json.enc -out service-account.json -d
 
 # first execute the test suite.
 # after the test execution is done and didn't
 # fail, build the images (if this step fails
 # the whole Travis build is considered a failure).
 script:
+  - python -m unittest discover -v
   - 'make test'
   - 'make image'
 
@@ -45,7 +40,7 @@ script:
 # environment in the settings pannel.
 after_success:
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
-      docker login -u kvaid30 -p P@$$word ;
+      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD ;
       make push-image ;
     fi
 

@@ -1,4 +1,4 @@
-FROM docker:dind
+FROM docker:flaskapp
 
 RUN set -x \
   && apk update \

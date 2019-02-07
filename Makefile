@@ -1,4 +1,4 @@
-IMAGE := cirocosta/flaskapp
+IMAGE := flaskapp/dind
 
 test:
 	true
